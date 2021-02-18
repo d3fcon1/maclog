@@ -44,7 +44,7 @@ By default, Maclog will log keystrokes to standard output.
 When you register an event tap, you supply a bit mask that identifies the set of events to be observed. To create the bit mask, use the CGEventMaskBit macro to convert each constant into an event mask and then OR the individual masks together.
 
 ```
-CGEventMask trackedEvents = CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventFlagsChanged);
+CGEventMask trackedEvents = CGEventMaskBit(kCGEventKeyDown)
 ```
 
 Before going further you should have a basic understanding of mach ports and how they are used by macOS. Mach ports are a kernel-provided inter-process communication (IPC) mechanism that's used extensively throughout macOS. They are unidirectional kernel-protected channels and can have multiple send-points but only one receive point. A Core Foundation mach port represents the new event tap, or NULL if the event tap could not be created. We pass a callback function, `log_keystrokes`, to the event tap, which contains logic to capture key press events and pass UTF-8 characters associated with those events to your data exfiltration solution of choice.
